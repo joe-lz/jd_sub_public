@@ -16,19 +16,11 @@ interface Index {
 @observer
 class Index extends Component {
   componentDidMount() {
-    console.log(this.props);
-  }
-
-  onShareAppMessage(res) {
-    return {
-      title: "鲸典设计",
-      path: "/pages/index/index"
-    };
   }
 
   render() {
     return (
-      <View className="index">index</View>
+      <View className='index'>index</View>
     );
   }
 }

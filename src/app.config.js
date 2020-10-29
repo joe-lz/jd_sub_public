@@ -1,5 +1,3 @@
-import preval from "preval.macro";
-
 export default {
   resizable: true,
   darkmode: true,
@@ -34,32 +32,13 @@ export default {
   //     }
   //   ]
   // }
-  pages: preval`
-      module.exports=(function() {
-        const pages = require('./config/pages')
-        return pages;
-      })()
-    `,
-  subpackages: preval`
-      module.exports=(function(){
-        const subPackages = require('./config/subpackages');
-        const subPackagesSubModule = require('./config/subPackage.subModule.generated');
-        return [
-          ...subPackages,
-          ...subPackagesSubModule,
-        ]
-      })();
-    `,
+  pages: ["pages/index/index"],
+  subpackages: [],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
     navigationBarTitleText: "WeChat",
-    navigationBarTextStyle: "black",
+    navigationBarTextStyle: "black"
   },
-  navigateToMiniProgramAppIdList: preval`
-      module.exports=(function() {
-        const navigateToMiniProgramAppIdList = require('./config/navigateToMiniProgramAppIdList')
-        return navigateToMiniProgramAppIdList;
-      })()
-    `
+  navigateToMiniProgramAppIdList: ["wx8abaf00ee8c3202e", "wx6885acbedba59c14"]
 };

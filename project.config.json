@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "jd_taro",
+  "projectname": "public",
   "description": "鲸典taro",
   "appid": "wx3db60cced1eeb85a",
   "setting": {

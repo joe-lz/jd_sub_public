@@ -32,7 +32,7 @@ export default {
   //     }
   //   ]
   // }
-  pages: ["pages/index/index"],
+  pages: ["pages/index/index", "pages/webview/index", "pages/webviewShare/index", "pages/auth/index"],
   subpackages: [],
   window: {
     backgroundTextStyle: "light",

@@ -4,12 +4,12 @@
   "description": "鲸典taro",
   "appid": "wx3db60cced1eeb85a",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": false,
-    "postcss": false,
+    "postcss": true,
     "preloadBackgroundData": false,
-    "minified": false,
+    "minified": true,
     "newFeature": false,
     "coverView": true,
     "nodeModules": false,
@@ -37,5 +37,46 @@
   "compileType": "miniprogram",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
-  "condition": {}
+  "condition": {
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": 0,
+          "name": "登陆0",
+          "pathName": "pages/auth/index",
+          "query": "type=0",
+          "scene": "1011"
+        },
+        {
+          "id": 1,
+          "name": "登陆1",
+          "pathName": "pages/auth/index",
+          "query": "type=1",
+          "scene": "1011"
+        },
+        {
+          "id": 2,
+          "name": "登陆2",
+          "pathName": "pages/auth/index",
+          "query": "type=2",
+          "scene": "1011"
+        },
+        {
+          "id": 3,
+          "name": "webview",
+          "pathName": "pages/webview/index",
+          "query": "url=https://www.baidu.com",
+          "scene": "1011"
+        },
+        {
+          "id": 4,
+          "name": "webviewShare",
+          "pathName": "pages/webviewShare/index",
+          "query": "url=https://www.baidu.com",
+          "scene": "1011"
+        }
+      ]
+    }
+  }
 }

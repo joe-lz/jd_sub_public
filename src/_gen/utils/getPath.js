@@ -3,21 +3,23 @@
  * @Author: bangdong.chen
  * @Date: 2020-03-07 17:07:46
  * @LastEditors: bangdong.chen
- * @LastEditTime: 2020-10-29 22:10:21
- * @FilePath: /jd_sub_public/src/_gen/utils/getPath.js
+ * @LastEditTime: 2020-10-29 21:52:06
+ * @FilePath: /jd_cli/src/templates/taro_project/src/_gen/utils/getPath.js
  */
 
 import projectConfig from '../../../project.config.json'
 
 export default ({ url, moduleName, params = {} }) => {
   if (moduleName) {
+    if (projectConfig.projectname === moduleName) {
+      return url
+    }
+    
     const query = []
     Object.keys(params).map((keyname) => {
       query.push(`${keyname}=${params[keyname]}`)
     })
-    if (projectConfig.projectname === moduleName) {
-      return `${url}?${query.join("&")}`;
-    }
+    
     return `/packages/${moduleName}${url}?${query.join('&')}`
   }
   console.error({

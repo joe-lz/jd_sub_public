@@ -5,6 +5,7 @@ import { observer, inject } from "mobx-react";
 
 import AV from "@src/_gen/utils/leancloud-storage/dist/av-weapp.js";
 import "./index.scss";
+import { handleError } from "@src/_gen/utils/handleError";
 
 type PageStateProps = {
   store: {};
@@ -73,156 +74,162 @@ class Index extends Component {
   }
 
   // 发送验证码
-  // _sendCode() {
-  //   const { mobile, isCounting } = this.state;
-  //   if (isCounting) {
-  //     return;
-  //   }
-  //   if (!mobile) {
-  //     Taro.showToast({ title: "请输入手机号", icon: "none", duration: 1000 });
-  //     return;
-  //   }
-  //   if (!/^[1]([3-9])[0-9]{9}$/.test(mobile)) {
-  //     Taro.showToast({ title: "手机号输入错误", icon: "none", duration: 1000 });
-  //     return;
-  //   }
-  //   Taro.showModal({
-  //     title: "提醒",
-  //     content: `将发送验证码至${mobile}`,
-  //   }).then(res => {
-  //     if (res.confirm) {
-  //       Taro.showLoading({ title: "发送中..." });
-  //       const {
-  //         params: { type },
-  //       } = this.$router;
-  //       const curType = Number(type);
-  //       if (curType === 2) {
-  //         // 绑定手机
-  //         // 设置并保存手机号
-  //         const user = AV.User.current();
-  //         user.setMobilePhoneNumber(mobile);
-  //         user.save().then(
-  //           userResult => {
-  //             const mobileNew = userResult.getMobilePhoneNumber();
-  //             AV.User.requestMobilePhoneVerify(mobileNew).then(
-  //               () => {
-  //                 Taro.hideLoading();
-  //                 Taro.showToast({
-  //                   title: "发送成功",
-  //                   icon: "success",
-  //                   duration: 1000,
-  //                 });
-  //                 this._countDown();
-  //               },
-  //               error => {
-  //                 Taro.hideLoading();
-  //                 handleError({ error });
-  //               }
-  //             );
-  //           },
-  //           error => {
-  //             Taro.hideLoading();
-  //             handleError({ error });
-  //           }
-  //         );
-  //       } else {
-  //         // 发送验证码
-  //         AV.Cloud.requestSmsCode(`+86${mobile}`).then(
-  //           () => {
-  //             Taro.hideLoading();
-  //             Taro.showToast({
-  //               title: "发送成功",
-  //               icon: "success",
-  //               duration: 1000,
-  //             });
-  //             this._countDown();
-  //           },
-  //           error => {
-  //             Taro.hideLoading();
-  //             handleError({ error });
-  //           }
-  //         );
-  //       }
-  //     }
-  //   });
-  // }
+  _sendCode() {
+    const { mobile, isCounting } = this.state;
+    if (isCounting) {
+      return;
+    }
+    if (!mobile) {
+      Taro.showToast({ title: "请输入手机号", icon: "none", duration: 1000 });
+      return;
+    }
+    if (!/^[1]([3-9])[0-9]{9}$/.test(mobile)) {
+      Taro.showToast({ title: "手机号输入错误", icon: "none", duration: 1000 });
+      return;
+    }
+    Taro.showModal({
+      title: "提醒",
+      content: `将发送验证码至${mobile}`,
+    }).then(res => {
+      if (res.confirm) {
+        Taro.showLoading({ title: "发送中..." });
+        const {
+          params: { type },
+        } = getCurrentInstance().router;
+        const curType = Number(type);
+        if (curType === 2) {
+          // 绑定手机
+          // 设置并保存手机号
+          const user = AV.User.current();
+          user.setMobilePhoneNumber(mobile);
+          user.save().then(
+            userResult => {
+              const mobileNew = userResult.getMobilePhoneNumber();
+              AV.User.requestMobilePhoneVerify(mobileNew).then(
+                () => {
+                  Taro.hideLoading();
+                  Taro.showToast({
+                    title: "发送成功",
+                    icon: "success",
+                    duration: 1000,
+                  });
+                  this._countDown();
+                },
+                error => {
+                  Taro.hideLoading();
+                  handleError({ error });
+                }
+              );
+            },
+            error => {
+              Taro.hideLoading();
+              handleError({ error });
+            }
+          );
+        } else {
+          // 发送验证码
+          AV.Cloud.requestSmsCode(`+86${mobile}`).then(
+            () => {
+              Taro.hideLoading();
+              Taro.showToast({
+                title: "发送成功",
+                icon: "success",
+                duration: 1000,
+              });
+              this._countDown();
+            },
+            error => {
+              Taro.hideLoading();
+              handleError({ error });
+            }
+          );
+        }
+      }
+    });
+  }
 
-  // // 去登录
-  // _handleSubmit() {
-  //   const { mobile, code } = this.state;
-  //   if (!mobile) {
-  //     Taro.showToast({ title: "请输入手机号", icon: "none", duration: 1000 });
-  //     return;
-  //   }
-  //   if (!/^[1]([3-9])[0-9]{9}$/.test(mobile)) {
-  //     Taro.showToast({ title: "手机号输入错误", icon: "none", duration: 1000 });
-  //     return;
-  //   }
-  //   if (!code || code.length !== 6) {
-  //     Taro.showToast({ title: "请输入验证码", icon: "none", duration: 1000 });
-  //     return;
-  //   }
-  //   Taro.showLoading({ title: "操作中..." });
-  //   const {
-  //     params: { type },
-  //   } = this.$router;
-  //   const curType = Number(type);
-  //   if (curType === 2) {
-  //     // 验证手机
-  //     AV.User.verifyMobilePhone(code).then(
-  //       () => {
-  //         // mobilePhoneVerified 将变为 true
-  //         Taro.hideLoading();
-  //         AV.User.become(AV.User.current()._sessionToken).then(() => {
-  //           this.props.userStore.updateCurUser().then(() => {
-  //             Taro.showToast({
-  //               title: "绑定成功",
-  //               icon: "success",
-  //               duration: 3000,
-  //             });
-  //             Taro.navigateBack({
-  //               delta: 2,
-  //             });
-  //           });
-  //         });
-  //       },
-  //       error => {
-  //         // 验证码不正确
-  //         Taro.hideLoading();
-  //         handleError({ error });
-  //       }
-  //     );
-  //   } else {
-  //     // 登录
-  //     AV.User.logInWithMobilePhoneSmsCode(mobile, code).then(
-  //       user => {
-  //         Taro.hideLoading();
-  //         AV.User.become(AV.User.current()._sessionToken).then(() => {
-  //           this.props.userStore.updateCurUser().then(() => {
-  //             // 登录成功
-  //             user.associateWithWeappWithUnionId();
-  //             Taro.showToast({
-  //               title: "登录成功",
-  //               icon: "success",
-  //               duration: 3000,
-  //             });
-  //             Taro.navigateBack({
-  //               delta: 2,
-  //             });
-  //           });
-  //         });
-  //       },
-  //       error => {
-  //         // 验证码不正确
-  //         Taro.hideLoading();
-  //         handleError({ error });
-  //       }
-  //     );
-  //   }
-  // }
+  // 去登录
+  _handleSubmit() {
+    const { mobile, code } = this.state;
+    if (!mobile) {
+      Taro.showToast({ title: "请输入手机号", icon: "none", duration: 1000 });
+      return;
+    }
+    if (!/^[1]([3-9])[0-9]{9}$/.test(mobile)) {
+      Taro.showToast({ title: "手机号输入错误", icon: "none", duration: 1000 });
+      return;
+    }
+    if (!code || code.length !== 6) {
+      Taro.showToast({ title: "请输入验证码", icon: "none", duration: 1000 });
+      return;
+    }
+    Taro.showLoading({ title: "操作中..." });
+    const {
+      params: { type },
+    } = getCurrentInstance().router;
+    const curType = Number(type);
+    if (curType === 2) {
+      // 验证手机
+      AV.User.verifyMobilePhone(code).then(
+        () => {
+          // mobilePhoneVerified 将变为 true
+          Taro.hideLoading();
+          AV.User.become(AV.User.current()._sessionToken).then(() => {
+            // this.props.userStore.updateCurUser().then(() => {
+            //   Taro.showToast({
+            //     title: "绑定成功",
+            //     icon: "success",
+            //     duration: 3000,
+            //   });
+            //   Taro.navigateBack({
+            //     delta: 2,
+            //   });
+            // });
+          });
+        },
+        error => {
+          // 验证码不正确
+          Taro.hideLoading();
+          handleError({ error });
+        }
+      );
+    } else {
+      // 登录
+      AV.User.logInWithMobilePhoneSmsCode(mobile, code).then(
+        user => {
+          Taro.hideLoading();
+          AV.User.become(AV.User.current()._sessionToken).then((res) => {
+            Taro.setStorageSync("lean_user", res.toJSON())
+            // this.props.userStore.updateCurUser().then(() => {
+            //   // 登录成功
+            //   user.associateWithWeappWithUnionId();
+            //   Taro.showToast({
+            //     title: "登录成功",
+            //     icon: "success",
+            //     duration: 3000,
+            //   });
+            //   Taro.navigateBack({
+            //     delta: 2,
+            //   });
+            // });
+          });
+        },
+        error => {
+          // 验证码不正确
+          Taro.hideLoading();
+          handleError({ error });
+        }
+      );
+    }
+  }
 
   render() {
     const { mobile, code, sendCodeMsg, isCounting, curTitle } = this.state;
+    const {
+      params: { type },
+    } = getCurrentInstance().router;
+    const curType = type ? Number(type) : 0;
+
     return (
       <View className="index">
         <View className="top">
@@ -274,6 +281,26 @@ class Index extends Component {
               {sendCodeMsg}
             </Button>
           </View>
+          <View className="input-group">
+            <Button
+              className={`input-item input-btn ${!code && "input-btn-disabled"}`}
+              hover-class="input-btn-active"
+              disabled={!mobile || !code}
+              onClick={() => {
+                this._handleSubmit();
+              }}
+            >
+              确定
+            </Button>
+          </View>
+          {curType === 0 && (
+            <View className={`bottom-contact`}>
+              <Text className="bottom-contact-desc">或者，您也可以直接</Text>
+              <Button className={`bottom-contact-btn`} open-type="contact">
+                联系我们
+              </Button>
+            </View>
+          )}
         </View>
       </View>
     );

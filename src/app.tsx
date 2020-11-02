@@ -8,26 +8,36 @@ import AV from "@src/_gen/utils/leancloud-storage/dist/av-weapp.js";
 AV.init({
   appId: REACT_APP_LEAN_APPID,
   appKey: REACT_APP_LEAN_KEY,
-  serverURLs: REACT_APP_LEAN_SERVER
+  serverURLs: REACT_APP_LEAN_SERVER,
 });
 
 class App extends Component {
-  componentWiillMount() {}
+  componentWillMount() {
+    let NODE_ENV = process.env.NODE_ENV;
+    const { getStorageSync, setStorageSync, setStorage, getStorage, removeStorageSync, removeStorage } = Taro;
+    getStorageSync = (storageKey) => {
+      getStorageSync(`${NODE_ENV}_${storageKey}`);
+    };
+    setStorageSync = (storageKey, value) => {
+      setStorageSync(`${NODE_ENV}_${storageKey}`, value);
+    };
+  }
+
   componentDidMount() {
     if (process.env.NODE_ENV !== "production") {
-      wx.onAccelerometerChange(res => {
+      wx.onAccelerometerChange((res) => {
         if (res.x > 3) {
           Taro.showModal({
             title: "扫码结果",
             content: `${JSON.stringify(this.$router.params)}`,
             showCancel: true,
-            cancelText: "测试页面"
-          }).then(modalres => {
+            cancelText: "测试页面",
+          }).then((modalres) => {
             if (modalres.confirm) {
               console.log("用户点击确定");
             } else if (modalres.cancel) {
               Taro.navigateTo({
-                url: "/packages/public/pages/test/index"
+                url: "/packages/public/pages/test/index",
               });
             }
           });

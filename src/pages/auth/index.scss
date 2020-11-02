@@ -35,20 +35,43 @@
       outline: none;
       border-radius: 8px;
       font-size: 28px;
-      background-color: #F7F8F9;
+      background-color: #f7f8f9;
       color: black;
     }
     .input-btn {
-      background-color: rgba(46,88,214, 1);
+      background-color: rgba(46, 88, 214, 1);
       color: white;
       &:after {
         display: none;
       }
       &-disabled {
-        background-color: #6C7D95;
+        background-color: #6c7d95;
       }
       &-active {
-
+      }
+    }
+  }
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  padding-top: 40px;
+  &-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-btn {
+      padding: 0;
+      margin: 0;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: #266EFF;
+      font-size: 28px;
+      line-height: initial;
+      &:after {
+        display: none;
       }
     }
   }

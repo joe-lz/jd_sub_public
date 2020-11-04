@@ -26,7 +26,12 @@ class Index extends Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    Taro.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"],
+    });
+  }
 
   handleAuth(params) {
     checkAuth({
@@ -39,32 +44,48 @@ class Index extends Component {
     });
   }
 
+  onShareAppMessage(res) {
+    if (res.from === "button") {
+      // 来自页面内转发按钮
+      console.log(res.target);
+    }
+    return {
+      title: "关于鲸典设计",
+    };
+  }
+
+  onShareTimeline(res) {
+    return {
+      title: "关于鲸典设计",
+    };
+  }
+
   render() {
     const { url } = this.state;
     return (
       <View className="intro">
         <View className="intro-top">
-          <Image className="intro-logo" mode="aspectFit" src='../../images/logo/logo.png' />
-          <Image className="intro-slogan" mode="aspectFit" src='../../images/logo/slogan.png' />
+          <Image className="intro-logo" mode="aspectFit" src="../../images/logo/logo.png" />
+          <Image className="intro-slogan" mode="aspectFit" src="../../images/logo/slogan.png" />
         </View>
         <View className="intro-middle">
           <Image
             mode="aspectFit"
-            src='../../images/temp/1.png'
+            src="../../images/temp/1.png"
             onClick={() => {
               // this.handleAuth({ type: 0 });
             }}
           />
           <Image
             mode="aspectFit"
-            src='../../images/temp/2.png'
+            src="../../images/temp/2.png"
             onClick={() => {
               // this.handleAuth({ type: 0 });
             }}
           />
           <Image
             mode="aspectFit"
-            src='../../images/temp/3.png'
+            src="../../images/temp/3.png"
             onClick={() => {
               // this.handleAuth({ type: 0 });
             }}

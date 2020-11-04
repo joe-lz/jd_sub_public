@@ -54,12 +54,33 @@ class Index extends Component {
   }
 
   componentDidMount() {
+    Taro.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"],
+    });
     let user = AV.User.current();
     if (user && user.mobilePhoneNumber) {
       user = AV.User.current().toJSON();
       this.setState({ mobile: user.mobilePhoneNumber });
     }
   }
+
+  onShareAppMessage(res) {
+    if (res.from === "button") {
+      // 来自页面内转发按钮
+      console.log(res.target);
+    }
+    return {
+      title: "入住鲸典设计",
+    };
+  }
+
+  onShareTimeline(res) {
+    return {
+      title: "入住鲸典设计",
+    };
+  }
+
 
   // 倒计时
   _countDown() {

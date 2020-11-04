@@ -8,6 +8,7 @@ import "./index.scss";
 import { handleError } from "@src/_gen/utils/handleError";
 import robot from "@src/_gen/utils/robot";
 
+const img_logo = require("@src/images/logo/logo-login.png");
 type PageStateProps = {
   store: {};
 };

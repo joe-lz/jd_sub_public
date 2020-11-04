@@ -64,6 +64,24 @@ class Index extends Component {
           <Button type="primary">关于鲸典</Button>
         </Navigator>
         <Text>/pages/intro/index</Text>
+        <Navigator
+          url={getPath({
+            url: "/pages/redirect/index",
+            moduleName: "public",
+          })}
+        >
+          <Button type="primary">中转页面</Button>
+        </Navigator>
+        <Text>/pages/redirect/index</Text>
+        <Navigator
+          url={getPath({
+            url: "/pages/test/index",
+            moduleName: "public",
+          })}
+        >
+          <Button type="primary">测试页面</Button>
+        </Navigator>
+        <Text>/pages/test/index</Text>
       </View>
     );
   }

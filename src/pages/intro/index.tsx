@@ -13,7 +13,11 @@ type PageStateProps = {
 interface Index {
   props: PageStateProps;
 }
-
+const img_logo = require("@src/images/logo/logo.png");
+const img_logoslogan = require("@src/images/logo/slogan.png");
+const img_temp1 = require("@src/images/temp/1.png");
+const img_temp2 = require("@src/images/temp/2.png");
+const img_temp3 = require("@src/images/temp/3.png");
 // @inject("store")
 // @observer
 class Index extends Component {
@@ -40,27 +44,27 @@ class Index extends Component {
     return (
       <View className="intro">
         <View className="intro-top">
-          <Image className="intro-logo" mode="aspectFit" src="../../images/logo/logo.png" />
-          <Image className="intro-slogan" mode="aspectFit" src="../../images/logo/slogan.png" />
+          <Image className="intro-logo" mode="aspectFit" src='../../images/logo/logo.png' />
+          <Image className="intro-slogan" mode="aspectFit" src='../../images/logo/slogan.png' />
         </View>
         <View className="intro-middle">
           <Image
             mode="aspectFit"
-            src="../../images/temp/1.png"
+            src='../../images/temp/1.png'
             onClick={() => {
               // this.handleAuth({ type: 0 });
             }}
           />
           <Image
             mode="aspectFit"
-            src="../../images/temp/2.png"
+            src='../../images/temp/2.png'
             onClick={() => {
               // this.handleAuth({ type: 0 });
             }}
           />
           <Image
             mode="aspectFit"
-            src="../../images/temp/3.png"
+            src='../../images/temp/3.png'
             onClick={() => {
               // this.handleAuth({ type: 0 });
             }}

@@ -1,6 +1,6 @@
-import AV from "@_gen/utils/leancloud-storage/dist/av-weapp.js";
+import AV from "@src/_gen/utils/leancloud-storage/dist/av-weapp.js";
 import Taro from "@tarojs/taro";
-import getPath from "@_gen/utils/getPath";
+import getPath from "@src/_gen/utils/getPath";
 import { checkPhoneVeritied } from "./regx";
 // 是否登录
 export default ({ params, callback }) => {

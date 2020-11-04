@@ -1,5 +1,5 @@
-import AV from '@src/_gen/utils/leancloud-storage/dist/av-weapp.js';
-import getPath from '@src/_gen/utils/getPath';
+import AV from '@_gen/utils/leancloud-storage/dist/av-weapp.js';
+import getPath from '@_gen/utils/getPath';
 import Taro from "@tarojs/taro";
 
 // 是否验证手机号

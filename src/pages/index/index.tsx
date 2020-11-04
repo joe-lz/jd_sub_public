@@ -4,7 +4,7 @@ import { View, Button, Text, Navigator } from "@tarojs/components";
 import { observer, inject } from "mobx-react";
 
 import "./index.scss";
-import getPath from "@src/_gen/utils/getPath";
+import getPath from "@_gen/utils/getPath";
 
 type PageStateProps = {
   store: {};

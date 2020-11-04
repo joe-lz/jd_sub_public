@@ -6,7 +6,7 @@
  * @LastEditTime: 2020-08-15 16:01:52
  * @FilePath: /fe-taro-jinxi/src/services/brand.js
  */
-import AV from '@src/_gen/utils/leancloud-storage/dist/av-weapp.js';
+import AV from '@_gen/utils/leancloud-storage/dist/av-weapp.js';
 import Taro from "@tarojs/taro";
 
 const Brand = AV.Object.extend('Brand');

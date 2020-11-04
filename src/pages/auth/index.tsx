@@ -3,10 +3,10 @@ import React, { Component } from "react";
 import { View, Button, Text, Navigator, Image, Input } from "@tarojs/components";
 import { observer, inject } from "mobx-react";
 
-import AV from "@src/_gen/utils/leancloud-storage/dist/av-weapp.js";
+import AV from "@_gen/utils/leancloud-storage/dist/av-weapp.js";
 import "./index.scss";
-import { handleError } from "@src/_gen/utils/handleError";
-import robot from "@src/_gen/utils/robot";
+import { handleError } from "@_gen/utils/handleError";
+import robot from "@_gen/utils/robot";
 
 const img_logo = require("@src/images/logo/logo-login.png");
 type PageStateProps = {

@@ -4,7 +4,7 @@ import { View, Button, Text, Navigator, Image } from "@tarojs/components";
 import { observer, inject } from "mobx-react";
 
 import "./index.scss";
-import checkAuth from "@src/_gen/utils/checkAuth";
+import checkAuth from "@_gen/utils/checkAuth";
 
 type PageStateProps = {
   store: {};

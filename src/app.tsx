@@ -1,3 +1,4 @@
+import Taro, { getCurrentInstance } from "@tarojs/taro";
 import React, { Component } from "react";
 import { Provider } from "mobx-react";
 
@@ -14,11 +15,11 @@ AV.init({
 class App extends Component {
   componentWillMount() {
     let NODE_ENV = process.env.NODE_ENV;
-    const { getStorageSync, setStorageSync, setStorage, getStorage, removeStorageSync, removeStorage } = Taro;
-    getStorageSync = (storageKey) => {
+    const { getStorageSync, setStorageSync } = Taro;
+    Taro.getStorageSync = (storageKey) => {
       getStorageSync(`${NODE_ENV}_${storageKey}`);
     };
-    setStorageSync = (storageKey, value) => {
+    Taro.setStorageSync = (storageKey, value) => {
       setStorageSync(`${NODE_ENV}_${storageKey}`, value);
     };
   }

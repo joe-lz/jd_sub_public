@@ -6,6 +6,7 @@ import { observer, inject } from "mobx-react";
 import AV from "@src/_gen/utils/leancloud-storage/dist/av-weapp.js";
 import "./index.scss";
 import { handleError } from "@src/_gen/utils/handleError";
+import robot from "@src/_gen/utils/robot";
 
 type PageStateProps = {
   store: {};
@@ -52,8 +53,9 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const user = JSON.parse(JSON.stringify(AV.User.current()));
+    let user = AV.User.current();
     if (user && user.mobilePhoneNumber) {
+      user = AV.User.current().toJSON();
       this.setState({ mobile: user.mobilePhoneNumber });
     }
   }
@@ -175,16 +177,14 @@ class Index extends Component {
           // mobilePhoneVerified 将变为 true
           Taro.hideLoading();
           AV.User.become(AV.User.current()._sessionToken).then(() => {
-            // this.props.userStore.updateCurUser().then(() => {
-            //   Taro.showToast({
-            //     title: "绑定成功",
-            //     icon: "success",
-            //     duration: 3000,
-            //   });
-            //   Taro.navigateBack({
-            //     delta: 2,
-            //   });
-            // });
+            Taro.showToast({
+              title: "绑定成功",
+              icon: "success",
+              duration: 3000,
+            });
+            Taro.navigateBack({
+              delta: 2,
+            });
           });
         },
         error => {
@@ -198,20 +198,22 @@ class Index extends Component {
       AV.User.logInWithMobilePhoneSmsCode(mobile, code).then(
         user => {
           Taro.hideLoading();
-          AV.User.become(AV.User.current()._sessionToken).then((res) => {
-            Taro.setStorageSync("lean_user", res.toJSON())
-            // this.props.userStore.updateCurUser().then(() => {
-            //   // 登录成功
-            //   user.associateWithWeappWithUnionId();
-            //   Taro.showToast({
-            //     title: "登录成功",
-            //     icon: "success",
-            //     duration: 3000,
-            //   });
-            //   Taro.navigateBack({
-            //     delta: 2,
-            //   });
-            // });
+          AV.User.become(AV.User.current()._sessionToken).then(res => {
+            Taro.setStorageSync("lean_user", res.toJSON());
+            // 登录成功，绑定当前微信
+            user.associateWithWeappWithUnionId();
+            // 如果是入驻鲸典，机器人通知
+            if (curType === 0) {
+              robot({ user: AV.User.current().toJSON() });
+            }
+            Taro.showToast({
+              title: "登录成功",
+              icon: "success",
+              duration: 3000,
+            });
+            Taro.navigateBack({
+              delta: 2,
+            });
           });
         },
         error => {

@@ -55,6 +55,15 @@ class Index extends Component {
           <Button type="primary">登录</Button>
         </Navigator>
         <Text>/pages/auth/index</Text>
+        <Navigator
+          url={getPath({
+            url: "/pages/intro/index",
+            moduleName: "public",
+          })}
+        >
+          <Button type="primary">关于鲸典</Button>
+        </Navigator>
+        <Text>/pages/intro/index</Text>
       </View>
     );
   }

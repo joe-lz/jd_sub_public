@@ -1,8 +1,9 @@
 import AV from '@src/_gen/utils/leancloud-storage/dist/av-weapp.js';
 import getPath from '@src/_gen/utils/getPath';
+import Taro from "@tarojs/taro";
 
 // 是否验证手机号
-export const checkPhoneVeriitied = ({ callback }) => {
+export const checkPhoneVeritied = ({ callback }) => {
   AV.User.become(AV.User.current()._sessionToken).then(
     () => {
       const userResult = JSON.parse(JSON.stringify(AV.User.current())); 

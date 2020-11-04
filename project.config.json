@@ -43,21 +43,21 @@
       "list": [
         {
           "id": 0,
-          "name": "登陆0",
+          "name": "登陆0 入驻鲸典",
           "pathName": "pages/auth/index",
           "query": "type=0",
           "scene": "1011"
         },
         {
           "id": 1,
-          "name": "登陆1",
+          "name": "登陆1 登录",
           "pathName": "pages/auth/index",
           "query": "type=1",
           "scene": "1011"
         },
         {
           "id": 2,
-          "name": "登陆2",
+          "name": "登陆2 绑定手机",
           "pathName": "pages/auth/index",
           "query": "type=2",
           "scene": "1011"
@@ -74,6 +74,13 @@
           "name": "webviewShare",
           "pathName": "pages/webviewShare/index",
           "query": "url=https://www.baidu.com",
+          "scene": "1011"
+        },
+        {
+          "id": 5,
+          "name": "intro",
+          "pathName": "pages/intro/index",
+          "query": "",
           "scene": "1011"
         }
       ]

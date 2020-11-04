@@ -1,4 +1,5 @@
 import leanerr from "@src/_gen/utils/leanerr";
+import Taro from "@tarojs/taro";
 
 // 处理leancloud错误
 export const handleError = ({ error }) => {

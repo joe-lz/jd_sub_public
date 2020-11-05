@@ -50,13 +50,13 @@ class Index extends Component {
       console.log(res.target);
     }
     return {
-      title: "关于鲸典设计",
+      title: "鲸典设计-激活千万品牌价值",
     };
   }
 
   onShareTimeline(res) {
     return {
-      title: "关于鲸典设计",
+      title: "鲸典设计-激活千万品牌价值",
     };
   }
 

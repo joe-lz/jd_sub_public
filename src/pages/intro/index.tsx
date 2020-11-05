@@ -18,6 +18,8 @@ const img_logoslogan = require("@src/images/logo/slogan.png");
 const img_temp1 = require("@src/images/temp/1.png");
 const img_temp2 = require("@src/images/temp/2.png");
 const img_temp3 = require("@src/images/temp/3.png");
+const logo_round = require("@src/images/share/logo_round.png");
+const share_index = require("@src/images/share/index.jpg");
 // @inject("store")
 // @observer
 class Index extends Component {
@@ -51,12 +53,14 @@ class Index extends Component {
     }
     return {
       title: "鲸典设计-激活千万品牌价值",
+      imageUrl: "../../images/share/index.jpg",
     };
   }
 
   onShareTimeline(res) {
     return {
       title: "鲸典设计-激活千万品牌价值",
+      imageUrl: "../../images/share/logo_round.png",
     };
   }
 

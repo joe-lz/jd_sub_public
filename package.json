@@ -10,7 +10,7 @@
   },
   "scripts": {
     "info": "taro info",
-    "copy2packages": "gulp --gulpfile=scripts/copy2packages.js build",
+    "copy2packages": "gulp --gulpfile=copy2packages.js build",
     "initSub": "jd taro:initSub",
     "initAppJS": "gulp compileAppJs --type weapp",
     "updateCodeGen": "jd taro:update",
@@ -76,6 +76,7 @@
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
     "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
     "minimist": "^1.2.5",
     "preval.macro": "^5.0.0",
     "stylelint": "9.3.0",

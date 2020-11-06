@@ -1,5 +1,5 @@
 export default {
   navigationBarTitleText: '',
-  navigationBarBackgroundColor: '#3377FF',
+  navigationBarBackgroundColor: '#1243D7',
   navigationBarTextStyle: 'white',
 }

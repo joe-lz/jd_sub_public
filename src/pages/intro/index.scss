@@ -22,16 +22,19 @@
     margin: 0 auto;
     margin-bottom: 20px;
     display: block;
+    width: 100%;
     height: 120px;
   }
   &-slogan {
     margin: 0 auto;
     display: block;
+    width: 100%;
     height: 26px;
   }
   &-middle {
     margin: 0 auto;
-    width: 560px;
+    width: 100%;
+    max-width: 560px;
     image {
       // margin-bottom: 20px;
       width: 100%;

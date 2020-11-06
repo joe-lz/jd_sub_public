@@ -4,7 +4,7 @@ import { Provider } from "mobx-react";
 
 import "./app.scss";
 import store from "./store";
-import AV from "@src/_gen/utils/leancloud-storage/dist/av-weapp.js";
+import AV from "@_gen/utils/leancloud-storage/dist/av-weapp.js";
 // 初始化leancloud应用
 AV.init({
   appId: REACT_APP_LEAN_APPID,

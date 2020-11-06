@@ -1,4 +1,4 @@
-import leanerr from "@src/_gen/utils/leanerr";
+import leanerr from "@_gen/utils/leanerr";
 import Taro from "@tarojs/taro";
 
 // 处理leancloud错误

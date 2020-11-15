@@ -241,9 +241,18 @@ class Index extends Component {
               icon: "success",
               duration: 3000,
             });
-            Taro.navigateBack({
-              delta: 2,
-            });
+            const pages = Taro.getCurrentPages();
+            if (pages.length > 1) {
+              let delta = 2;
+              if (pages.length === 2) {
+                delta = 1;
+              }
+              Taro.navigateBack({ delta });
+            } else {
+              Taro.redirectTo({
+                url: "/pages/index/index",
+              });
+            }
           });
         },
         error => {

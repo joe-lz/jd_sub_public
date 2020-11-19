@@ -11,7 +11,7 @@ export default ({ params, callback }) => {
     });
   } else {
     Taro.showActionSheet({
-      itemList: ["微信登录", "账号登录"],
+      itemList: ["微信登录/注册", "手机号登录"],
     }).then(res => {
       if (res.tapIndex === 0) {
         // 微信登录

@@ -74,30 +74,32 @@ class Index extends Component {
             <Image className="intro-slogan" mode="aspectFit" src="../../images/logo/slogan.png" />
           </View>
           <View className="intro-middle">
-            <Image
-              mode="aspectFit"
-              src="../../images/temp/1.png"
-              onClick={() => {
-                // this.handleAuth({ type: 0 });
-              }}
-            />
-            <Image
-              mode="aspectFit"
-              src="../../images/temp/2.png"
-              onClick={() => {
-                // this.handleAuth({ type: 0 });
-              }}
-            />
-            <Image
-              mode="aspectFit"
-              src="../../images/temp/3.png"
-              onClick={() => {
-                // this.handleAuth({ type: 0 });
-              }}
-            />
+            <View className="intro-middle-content">
+              <Image
+                mode="aspectFit"
+                src="../../images/temp/1.png"
+                onClick={() => {
+                  // this.handleAuth({ type: 0 });
+                }}
+              />
+              <Image
+                mode="aspectFit"
+                src="../../images/temp/2.png"
+                onClick={() => {
+                  // this.handleAuth({ type: 0 });
+                }}
+              />
+              <Image
+                mode="aspectFit"
+                src="../../images/temp/3.png"
+                onClick={() => {
+                  // this.handleAuth({ type: 0 });
+                }}
+              />
+            </View>
           </View>
           <View className="intro-bottom">
-            <Button
+            {/* <Button
               className="intro-bottom-btn`, `${CSS_PREFIX}-intro-bottom-btn-active"
               hover-class="intro-bottom-btn-active-hover"
               onClick={() => {
@@ -105,7 +107,7 @@ class Index extends Component {
               }}
             >
               入驻鲸典
-            </Button>
+            </Button> */}
             <Button
               className="intro-bottom-btn"
               hover-class="intro-bottom-btn-hover"
@@ -113,7 +115,7 @@ class Index extends Component {
                 this.handleAuth({ type: 1 });
               }}
             >
-              登录
+              登录/注册
             </Button>
           </View>
         </View>
